@@ -8,7 +8,6 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     
-    //!!! ИСПРАВЛЕНО Не надо писать this там, где он не нужен
     
     if (objectName().isEmpty())
         setObjectName(QString::fromUtf8("MainWindow"));
@@ -28,11 +27,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     lineEdit->setObjectName(QString::fromUtf8("LineEdit"));
     lineEdit->setGeometry(QRect(0, 0, 108, 22));
 
-    radioButtonSimple->setText(tr("Обычный")); //!!! ИСПРАВЛЕНО Строки, отображаемые в интерфейсе, желательно помещать в tr("...")
-    radioButtonCompl->setText(tr("Инженерный")); //!!! ИСПРАВЛЕНО Строки, отображаемые в интерфейсе, желательно помещать в tr("...")
+    radioButtonSimple->setText(tr("Обычный"));
+    radioButtonCompl->setText(tr("Инженерный")); 
     QMetaObject::connectSlotsByName(this);
 
-    setWindowTitle(tr("Калькулятор (обычный)")); //!!! ИСПРАВЛЕНО Строки, отображаемые в интерфейсе, желательно помещать в tr("...")
+    setWindowTitle(tr("Калькулятор (обычный)")); 
     setWindowOpacity(1);
     setMinimumSize(380, 450);
     setMaximumSize(380, 450);
@@ -58,18 +57,17 @@ void MainWindow::SwitchMode() {
     if (!radioButtonSimple->isChecked()) {
         
         
-        delete mainLayout; //!!!КНОПКИ ОБЫЧНОГО РЕЖИМА ИСПОЛЬЗУЮТСЯ В ИНЖЕНЕРНОМ РЕЖИМЕ И ПОЭТОМУ НЕ УДАЛЯЮТСЯ
-                           //!!!При удалении mainLayout удаляется только выравнивание, но не кнопки. Где удаление кнопок через delete при переключении режимов?
+        delete mainLayout;
 
         
-        setWindowTitle(tr("Калькулятор (инженерный)")); //!!! ИСПРАВЛЕНО Строки, отображаемые в интерфейсе, желательно помещать в tr("...")
+        setWindowTitle(tr("Калькулятор (инженерный)"));
         
         setMinimumSize(700, 500);
         setMaximumSize(700, 500);
         SpawnComplMode();
     }
     else {
-        delete mainLayout; //!!!ИСПРАВЛЕНО При удалении mainLayout удаляется только выравнивание, но не кнопки. Где удаление кнопок через delete при переключении режимов?
+        delete mainLayout;
         delete pushButtonSinh;
         delete pushButtonSin;
         delete pushButtonExp;
@@ -86,7 +84,7 @@ void MainWindow::SwitchMode() {
         delete pushButtonPi;
         delete pushButtonCubeRoot;
         delete pushButtonNRoot;
-        setWindowTitle(tr("Калькулятор (обычный)")); //!!! ИСПРАВЛЕНО Строки, отображаемые в интерфейсе, желательно помещать в tr("...")
+        setWindowTitle(tr("Калькулятор (обычный)"));
         setMinimumSize(400, 500);
         setMaximumSize(400, 500);
         SpawnSimpleMode();
@@ -119,8 +117,7 @@ void MainWindow::SpawnComplMode() {
 }
 
 void MainWindow::CreateSimpleCalcWidget() {
-    
-    //!!! ИСПРАВЛЕНО При создании всех объектов желательно указывать объект-родитель. (НЕ ИСПРАВЛЕНО)
+
 
     QPushButton* pushButton0 =      new QPushButton("0",this);
     QPushButton* pushButton1 =      new QPushButton("1",this);
